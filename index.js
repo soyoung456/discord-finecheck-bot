@@ -23,7 +23,7 @@ const client = new Client({
 });
 
 // 채널 이름 추가
-const TARGET_CHANNELS = ['💸벌금-관리', '봇-설정중']; 
+const TARGET_CHANNELS = '💸벌금-관리';
 
 const commands = [
     new SlashCommandBuilder()
@@ -54,10 +54,10 @@ client.on('interactionCreate', async (interaction) => {
         await interaction.deferReply();
 
         // 현재 명령어를 입력한 서버 내에서 감시 대상 채널이 있는지 찾기
-        const targetChannel = interaction.guild.channels.cache.find(c => TARGET_CHANNELS.includes(c.name));
-        
+        const targetChannel = interaction.guild.channels.cache.find(c => c.name === TARGET_CHANNEL);
+
         if (!targetChannel) {
-            return interaction.editReply(`감시할 대상 채널(${TARGET_CHANNELS.join(', ')})을 찾을 수 없습니다. 채널 이름을 확인해 주세요!`);
+            return interaction.editReply(`채널(${TARGET_CHANNEL})을 찾을 수 없습니다. 채널 이름을 확인해 주세요!`);
         }
 
         try {
@@ -66,7 +66,7 @@ client.on('interactionCreate', async (interaction) => {
 
             for (const [msgId, msg] of messages) {
                 if (msg.author.bot) continue;
-                
+
                 const targetUser = msg.mentions.users.first();
                 if (!targetUser) continue;
 
