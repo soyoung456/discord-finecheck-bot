@@ -1,3 +1,15 @@
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 10000;
+
+app.get('/', (req, res) => {
+    res.send('Bot is running safely!');
+});
+
+app.listen(PORT, () => {
+    console.log(`Render 포트 감지 서버가 ${PORT}번에서 작동 중입니다.`);
+});
+
 require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder } = require('discord.js');
 
