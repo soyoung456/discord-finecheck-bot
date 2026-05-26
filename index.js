@@ -23,7 +23,7 @@ const client = new Client({
 });
 
 // 채널 이름 추가
-const TARGET_CHANNELS = '💸벌금-관리';
+const TARGET_CHANNEL = '💸벌금-관리';
 
 const commands = [
     new SlashCommandBuilder()
